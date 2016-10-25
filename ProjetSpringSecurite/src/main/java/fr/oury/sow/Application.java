@@ -12,7 +12,7 @@ import org.springframework.context.ApplicationContext;
 import fr.oury.sow.dao.EtudiantRpository;
 import fr.oury.sow.entities.Etudiant;
 
-
+//tst
 
 //@ComponentScan("fr.oury.sow.app")
 @SpringBootApplication
