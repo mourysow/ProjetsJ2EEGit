@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Insert title here</title>
+<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" />
+<link rel="stylesheet" type="text/css" href="css/myStyle.css" />
+<script type="text/javascript" src="js/angular.min.js"></script>
+<script type="text/javascript" src="js/myApp.js"></script>
+</head>
+<body ng-app="myApp" ng-controller="IndexController">
+
+   <ul class="nav nav-pills">
+    <li ng-class="{active:m==selectedMenu}" ng-click="select(m)" class="clickable" ng-repeat="m in menu">
+       <a>{{m}}</a>
+    </li>  
+  </ul>
+   <div ng-if="selectedMenu='Inscription'" ng-controller="InscriptionController">
+    <div ng-include="'inscription.html'"></div>
+  </div>
+   <div ng-if="selectedMenu='Listes'" ng-controller="ListeEtudiantController">
+    <div ng-include="'listeEtudiants.html'"></div>
+  </div>
+ 
+</body>
+</html>

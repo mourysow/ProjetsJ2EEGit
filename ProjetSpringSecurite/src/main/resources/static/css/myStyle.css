@@ -1,0 +1,10 @@
+.spacer{
+	margin-top: 20px;	
+ }
+.error{
+	color: red;	
+ }
+ 
+.clickable{
+   cursor: pointer;
+ }
