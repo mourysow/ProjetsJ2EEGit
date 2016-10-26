@@ -40,7 +40,7 @@ myApp.controller("InscriptionController", function($scope, $http) {
 });
 //==========================================================
 myApp.controller("IndexController", function($scope, $http) {
-	$scope.menu=["Inscription","Listes","Utilisateurs","Logout"];
+	$scope.menu=["Listes","Inscription","Utilisateurs",];
 	$scope.selectedMenu = null;
 	
 	 $scope.select = function(m) {

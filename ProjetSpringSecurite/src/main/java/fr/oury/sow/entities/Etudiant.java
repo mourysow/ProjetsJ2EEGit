@@ -3,16 +3,7 @@ package fr.oury.sow.entities;
 import java.io.Serializable;
 import java.util.Date;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
-
-import org.slf4j.Logger;
-import org.springframework.format.annotation.DateTimeFormat;
-
-import lombok.Data;
+import com.sun.istack.internal.NotNull;
 
 @Data
 @Entity
@@ -35,6 +26,11 @@ public class Etudiant implements Serializable{
 		super();
 		
 	}
+    
+	public Etudiant(Long idEtudiant) {
+		super();
+		this.idEtudiant = idEtudiant;
+	}
 
 	public Etudiant(String nom, String prenom, Date dateNaissance) {
 		super();
@@ -43,6 +39,7 @@ public class Etudiant implements Serializable{
 		this.dateNaissance = dateNaissance;
 	}
 
+	
 	public Long getIdEtudiant() {
 		return idEtudiant;
 	}

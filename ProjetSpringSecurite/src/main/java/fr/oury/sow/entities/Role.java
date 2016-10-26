@@ -2,12 +2,6 @@ package fr.oury.sow.entities;
 
 import java.io.Serializable;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
-
-import lombok.Data;
-
 @Data
 @Entity
 public class Role implements Serializable {
@@ -42,11 +36,5 @@ public class Role implements Serializable {
 	public void setDescription(String description) {
 		this.description = description;
 	}
-	
-	
-
-
-	
-	
-
+   
 }

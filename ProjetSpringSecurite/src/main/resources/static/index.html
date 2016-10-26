@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html ng-app="myApp">
 <head>
 <meta charset="utf-8">
 <title>Insert title here</title>
@@ -8,19 +8,22 @@
 <script type="text/javascript" src="js/angular.min.js"></script>
 <script type="text/javascript" src="js/myApp.js"></script>
 </head>
-<body ng-app="myApp" ng-controller="IndexController">
+<body  >
 
-   <ul class="nav nav-pills">
+   <ul class="nav nav-pills" ng-controller="IndexController">
     <li ng-class="{active:m==selectedMenu}" ng-click="select(m)" class="clickable" ng-repeat="m in menu">
        <a>{{m}}</a>
     </li>  
   </ul>
-   <div ng-if="selectedMenu='Inscription'" ng-controller="InscriptionController">
-    <div ng-include="'inscription.html'"></div>
-  </div>
+  
    <div ng-if="selectedMenu='Listes'" ng-controller="ListeEtudiantController">
-    <div ng-include="'listeEtudiants.html'"></div>
+    <div ng-include="'views/listeEtudiants.html'"></div>
   </div>
+  
+   <div ng-if="selectedMenu='Inscription'" ng-controller="InscriptionController">
+    <div ng-include="'views/inscription.html'"></div>
+  </div>
+ 
  
 </body>
 </html>

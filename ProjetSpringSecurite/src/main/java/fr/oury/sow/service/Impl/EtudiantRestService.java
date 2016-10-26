@@ -1,35 +1,17 @@
-package fr.oury.sow.service;
+package fr.oury.sow.service.Impl;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
-import javax.validation.Valid;
-
-import lombok.extern.slf4j.Slf4j;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.security.access.annotation.Secured;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.context.SecurityContext;
-import org.springframework.validation.BindingResult;
-import org.springframework.validation.FieldError;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
-
 import fr.oury.sow.dao.EtudiantRpository;
 import fr.oury.sow.entities.Etudiant;
+import fr.oury.sow.service.IEtudiantRestRepository;
 
 @Slf4j
 @RestController
-public class EtudiantRestService {
+public class EtudiantRestService implements IEtudiantRestRepository {
 	//Logger log = null;
 	
 	@Autowired
@@ -41,6 +23,10 @@ public class EtudiantRestService {
 	 * Au lieu de:  public Etudiant mettons public Object
 	 * la methode sava aulieu de retourner que etudiant elle retourne soit l'etudiant soit une erreur
 	 */
+	/* (non-Javadoc)
+	 * @see fr.oury.sow.service.IEtudiantRestRepository#saveEtudiant(fr.oury.sow.entities.Etudiant, org.springframework.validation.BindingResult)
+	 */
+	@Override
 	@Secured(value={"ROLE_ADMIN","ROLE_SCOLARITE"})
 	@RequestMapping(value = "/etudiants", method = RequestMethod.POST)
 	public Object saveEtudiant(@RequestBody @Valid Etudiant e, BindingResult bindingResult){		
@@ -59,12 +45,20 @@ public class EtudiantRestService {
 	}
 	
 	
+	/* (non-Javadoc)
+	 * @see fr.oury.sow.service.IEtudiantRestRepository#listeEtudiants(int, int)
+	 */
+	@Override
 	@Secured(value={"ROLE_ADMIN","ROLE_SCOLARITE","ROLE_PROF", "ROLE_ETUDIANT"})
 	@RequestMapping(value = "/etudiants")
 	public Page<Etudiant> listeEtudiants(int page, int size){
 		return etudiantRpository.findAll(new PageRequest(page, size));
 	}
 
+	/* (non-Javadoc)
+	 * @see fr.oury.sow.service.IEtudiantRestRepository#getLogUser(javax.servlet.http.HttpServletRequest)
+	 */
+	@Override
 	@RequestMapping(value = "/getLogUser")
 	public Map<String, Object> getLogUser(HttpServletRequest httpServletRequest){
 		
