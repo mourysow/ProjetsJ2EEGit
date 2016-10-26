@@ -6,6 +6,10 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.ApplicationContext;
+
 import fr.oury.sow.dao.EtudiantRpository;
 import fr.oury.sow.dao.RoleRepository;
 import fr.oury.sow.dao.UserRepository;

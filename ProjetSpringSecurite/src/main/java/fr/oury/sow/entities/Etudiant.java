@@ -1,11 +1,18 @@
 package fr.oury.sow.entities;
 
+import groovy.util.logging.Slf4j;
+
 import java.io.Serializable;
 import java.util.Date;
 
-import com.sun.istack.internal.NotNull;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
-@Data
+import org.springframework.format.annotation.DateTimeFormat;
+
 @Entity
 public class Etudiant implements Serializable{
 
@@ -22,7 +29,7 @@ public class Etudiant implements Serializable{
 	private Date dateNaissance;
 	           
 	public Etudiant() {
-  
+ 
 		super();
 		
 	}

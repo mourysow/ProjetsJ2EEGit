@@ -2,6 +2,9 @@ package fr.oury.sow.service;
 
 import java.util.Map;
 
+import org.springframework.data.domain.Page;
+import org.springframework.validation.BindingResult;
+import javax.servlet.http.HttpServletRequest;
 import fr.oury.sow.entities.Etudiant;
 
 public interface IEtudiantRestRepository {

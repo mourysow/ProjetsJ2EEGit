@@ -3,7 +3,12 @@ package fr.oury.sow.entities;
 import java.io.Serializable;
 import java.util.Collection;
 
-@Data
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.Table;
+
 @Entity
 @Table(name = "users")
 public class User implements Serializable {

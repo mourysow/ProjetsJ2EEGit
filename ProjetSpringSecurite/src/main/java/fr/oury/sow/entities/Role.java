@@ -2,7 +2,9 @@ package fr.oury.sow.entities;
 
 import java.io.Serializable;
 
-@Data
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
 @Entity
 public class Role implements Serializable {
 	@Id

@@ -1,13 +1,19 @@
 package fr.oury.sow.service.Impl;
 
+
 import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.annotation.Secured;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import fr.oury.sow.dao.RoleRepository;
 import fr.oury.sow.dao.UserRepository;
 import fr.oury.sow.entities.Role;
 import fr.oury.sow.entities.User;
+import fr.oury.sow.service.IUserRestService;
 
-@Slf4j
 @RestController
 @Secured(value={"ROLE_ADMIN"})
 public class UserRestService implements IUserRestService {
