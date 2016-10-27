@@ -14,26 +14,43 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
+import lombok.Data;
+import lombok.extern.slf4j.Slf4j;
 
+@Data
+@Slf4j
 @Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(name = "TYPE_CPTE", discriminatorType = DiscriminatorType.STRING, length = 4)
 public class Compte implements Serializable {
+	
 	@Id
 	private String codeCompte;
+	
 	private Date dateCreation;
+	
 	private double solde;
+	
+	/**
+	 * nous indiquerons les informations relatives aux cascades, à la colonne 
+	 * de jointure si l'on veut choisir son nom ici CODE_CLI  et non laisser celui
+	 *par défaut.
+	 */
 	@ManyToOne
-	@JoinColumn(name = "CODE_CLI")
+	@JoinColumn(name = "Compte")
 	private Client client;
+	
 	@ManyToOne
 	@JoinColumn(name = "CODE_EMP")
 	private Employe employe;
+	
 	@OneToMany(mappedBy = "compte")
 	private Collection<Operation> operations;
 
 	public String getCodeCompte() {
 		return codeCompte;
+		
+		
 	}
 
 	public void setCodeCompte(String codeCompte) {

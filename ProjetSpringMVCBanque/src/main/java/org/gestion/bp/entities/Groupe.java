@@ -14,9 +14,16 @@ public class Groupe implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long codeGroupe;
+	
 	private String nomGroupe;
+	
+	/**
+	 * Employe  [1 *]---------[1 *] Groupe
+	 * Nous avons gerer la jointure coté Employe
+	 */
 	@ManyToMany(mappedBy = "groupes")
 	private Collection<Employe> employes;
+	
 
 	public Long getCodeGroupe() {
 		return codeGroupe;

@@ -22,6 +22,7 @@
        </table>
      </f:form>
    </div>
+   
    <c:if test="${not empty banqueForm.compte}">
    <div>
     <table>
@@ -51,6 +52,7 @@
       </c:if>
     </table>
    </div>
+   
    <div>
     <table>
      <tr> 
@@ -59,6 +61,7 @@
      </tr> 
     </table>
    </div>
+   
    <div>
     <table>
      <tr>
@@ -67,6 +70,7 @@
      </tr> 
     </table>
    </div>
+   
    <div>
      <f:form  modelAttribute="banqueForm" action="saveOperation">
         <f:hidden path="code"/>
