@@ -13,8 +13,8 @@ import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 @Entity
 public class Employe implements Serializable {
-	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
+  @Id
+   @GeneratedValue(strategy=GenerationType.IDENTITY)
   private Long codeEmploye;
   private String nomEmploye;
   @ManyToOne
