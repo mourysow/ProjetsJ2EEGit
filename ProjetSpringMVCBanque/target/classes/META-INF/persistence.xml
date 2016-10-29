@@ -8,3 +8,10 @@
         </properties>
     </persistence-unit>
 </persistence>
+
+
+<!-- 
+fichier de config de la JPA
+dans provider on indique à JPA que l'on va gerer la persistence par hibernate
+ <provider>org.hibernate.ejb.HibernatePersistence</provider>
+ -->

@@ -4,7 +4,7 @@ import java.util.List;
 
 import org.gestion.bp.entities.Compte;
 import org.gestion.bp.entities.Operation;
-import org.gestion.bp.metier.IBanqueMetier;
+import org.gestion.bp.service.IBanqueService;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 public class Test2 {
@@ -12,7 +12,7 @@ public class Test2 {
 	public static void main(String[] args) {
 		ClassPathXmlApplicationContext context=
 				new ClassPathXmlApplicationContext(new String[]{"applicationContext.xml"});
-		IBanqueMetier metier=(IBanqueMetier) context.getBean("metier");
+		IBanqueService metier=(IBanqueService) context.getBean("metier");
 		Compte cp=metier.consulterCompte("CC1");
 		
 		System.out.println("Solde:"+cp.getSolde());

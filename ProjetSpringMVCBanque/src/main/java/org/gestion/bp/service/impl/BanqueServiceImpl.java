@@ -1,4 +1,4 @@
-package org.gestion.bp.metier;
+package org.gestion.bp.service.impl;
 
 import java.util.Date;
 import java.util.List;
@@ -11,10 +11,14 @@ import org.gestion.bp.entities.Groupe;
 import org.gestion.bp.entities.Operation;
 import org.gestion.bp.entities.Retrait;
 import org.gestion.bp.entities.Versement;
+import org.gestion.bp.service.IBanqueService;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.stereotype.Service;
+
+
+@Service(value = "banqueService")
 @Transactional
-public class BanqueMetierImpl implements IBanqueMetier {
-	private IBanqueDao dao;
+public class BanqueServiceImpl extends AbstractService implements IBanqueService {
 	
 	
 	public void setDao(IBanqueDao dao) {

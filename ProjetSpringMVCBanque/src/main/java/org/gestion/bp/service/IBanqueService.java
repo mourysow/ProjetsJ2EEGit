@@ -1,4 +1,4 @@
-package org.gestion.bp.metier;
+package org.gestion.bp.service;
 
 import java.util.List;
 
@@ -8,7 +8,7 @@ import org.gestion.bp.entities.Employe;
 import org.gestion.bp.entities.Groupe;
 import org.gestion.bp.entities.Operation;
 
-public interface IBanqueMetier {
+public interface IBanqueService {
 	public Client addClient(Client c);
 	public Employe addEmploye(Employe e,Long codeSup);
 	public Groupe addGroupe(Groupe g);

@@ -1,4 +1,4 @@
-package org.gestion.bp.models;
+package org.gestion.bp.form;
 
 import java.util.List;
 

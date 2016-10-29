@@ -1,4 +1,4 @@
-package org.gestion.bp.dao;
+package org.gestion.bp.dao.impl;
 
 import java.util.List;
 
@@ -6,6 +6,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
+import org.gestion.bp.dao.IBanqueDao;
 import org.gestion.bp.entities.Client;
 import org.gestion.bp.entities.Compte;
 import org.gestion.bp.entities.Employe;
@@ -13,7 +14,18 @@ import org.gestion.bp.entities.Groupe;
 import org.gestion.bp.entities.Operation;
 
 public class BanqueDaoImpl  implements IBanqueDao{
-	
+	/**
+	 * L'objet EntityManager est responsable de la gestion des entités et de leurs états. 
+	 * Il va ainsi permettre les opérations de base offertes par le langage relationnel que sont :
+	 * l'ajout ;la lecture ;la mise à jour ;la suppression.
+	 * 
+	 * L'EntityManager est donc l'objet qui va permettre au développeur de manipuler ses objets Java 
+	 * devenus des entités et ainsi lui permettre de les persister. Il est donc nécessaire d'obtenir
+	 * une référence vers un objet EntityManager; cela s'effectue par l'appel à la méthode factory de
+	 * la classe EntityManagerFactory, comme montré ci-dessous 
+	 */
+	 
+	// On appel la JPA par EntityManager entityManager pour gerer la persistance
 	@PersistenceContext
 	private EntityManager entityManager;
 	@Override

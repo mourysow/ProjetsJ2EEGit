@@ -6,16 +6,33 @@
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.1.xsd
 		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.2.xsd">
-  <bean id="dao" class="org.gestion.bp.dao.BanqueDaoImpl"></bean>
-  <bean id="metier" class="org.gestion.bp.metier.BanqueMetierImpl">
+
+  <context:property-placeholder location="classpath*:config/application.properties" />
+  <!-- dans le controller BanqueController on a: IBanqueMetier metier;;
+  on demande à spring de creer un bean applé dao  de la classe BanqueDaoImpl
+   --> 
+  <bean id="dao" class="org.gestion.bp.dao.impl.BanqueDaoImpl"></bean>
+
+  <!--Dans le controller BanqueMetierImpl on a: private IBanqueDao dao;
+    on demande à spring de creer un bean applé metier de la classe  BanqueMetierImpl
+    Dans propriete on fait l'injection de dependance entre l'objet metier et l'ojet dao
+    NB: c'est le metier qui utilise dao non le contraire
+   -->  
+  <bean id="banqueService" class="org.gestion.bp.service.impl.BanqueServiceImpl">
     <property name="dao" ref="dao"></property>
   </bean>
+  <!-- 
+  on renseigne le data source
+   -->
   <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
-    <property name="driverClassName" value="com.mysql.jdbc.Driver"></property>
-    <property name="url" value="jdbc:mysql://localhost:3306/projetspringmvcbanque"></property>
-    <property name="username" value="dbourysow"></property>
-    <property name="password" value="lamarana"></property>
+	    <property name="driverClassName" value="${jdbc.driverClassName}" />
+		<property name="url" value="${jdbc.url}" />
+		<property name="username" value="${jdbc.username}" />
+		<property name="password" value="${jdbc.password}" />
   </bean>
+    <!-- 
+  on relie le datasource à la couche de persistence dans persistence.xml
+   -->
   <bean id="persistenceUnitManager" class="org.springframework.orm.jpa.persistenceunit.DefaultPersistenceUnitManager">
      <property name="persistenceXmlLocations">
       <list>
@@ -24,13 +41,40 @@
      </property>
      <property name="defaultDataSource" ref="dataSource"></property>
   </bean>
+
+  <!-- Déclaration de l' « EntityManagerFactory » 
+   L'entity manager factory permet de fournir les instances des gestionnaires d'entités nécessaire
+    au mapping des beans métier avec la base de données via les annotations JPA2.
+    
+   La configuration des entités persistés se fait via annotations (dans javax.persistence.*).
+
+   Le standard JPA propose les classes suivantes :
+   EntityManager : toutes les méthodes de persistance (save, find...)
+   EntitiyManagerFactory : la Factory pour l'EntityManager configuré par le persistence.xml
+   Le fichier META-INF/persistence.xml définit une unité de persistance (persistence unit).                                -->
+   
   <bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
    <property name="persistenceUnitManager" ref="persistenceUnitManager"></property>
    <property name="persistenceUnitName" value="MY_P_U"></property>
   </bean>
+  
+ <!-- ajoute un gestionnaire de transactions lié à la entityManagerFactory 
+ on dit à spring qu'il doit utiliser JPA pour les transaction
+ --> 
   <bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
     <property name="entityManagerFactory" ref="entityManagerFactory"></property>
   </bean>
+ 
+ <!-- 
+ on reseigne que l'on utilise une gestion de transaction basé sur les annotations
+ @Transactional à ajouter pour gerer les methode transactionnel qui se trouve 
+ dans BanqueMetierImpl
+  -->
   <tx:annotation-driven transaction-manager="transactionManager"/>
+  
+  <!--
+  pour injecter l'entityManager basé sur l'annotation @PersistenceContext qui est 
+  declarer dans la classe BanqueDaoImpl il faut renseigner comme suit
+   -->
   <context:annotation-config></context:annotation-config>
 </beans>
